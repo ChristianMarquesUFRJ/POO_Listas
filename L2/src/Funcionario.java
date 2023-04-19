@@ -8,11 +8,11 @@
  */
 
 public class Funcionario {
-    private final int id;
+    private final int ID_FUNC;
     private String nome;
-    private double horas_trabalhadas_mes;
-    private double salario_hora = Funcionario.SALARIO_HORA_MINIMO;
-    private static int proximo_id = 0;
+    private double horasTrabalhadasMes;
+    private double salarioHora = Funcionario.SALARIO_HORA_MINIMO;
+    private static int proxID = 0;
     public static final double SALARIO_HORA_MINIMO = 12.50;
     private static final double HORA_MINIMA_TRABALHADA_DIA = 4.0;
     private static final double HORA_MAXIMA_TRABALHADA_DIA = 24.0;
@@ -21,24 +21,24 @@ public class Funcionario {
     // Construtores
     ////////////////////////////////////////////////////////////////////
     public Funcionario(String nome){
-        this.id = Funcionario.proximo_id;
-        Funcionario.proximo_id++;
-        this.atualizarNome(nome);
-        this.atualizarSalarioHora(Funcionario.SALARIO_HORA_MINIMO);
-        this.reiniciarMesTrabalho();
+        this.ID_FUNC = Funcionario.proxID;
+        Funcionario.proxID++;
+        this.atualizaNome(nome);
+        this.atualizaSalarioHora(Funcionario.SALARIO_HORA_MINIMO);
+        this.reiniciaMesTrabalho();
     }
-    public Funcionario(String nome, double salario_hora){
-        this.id = Funcionario.proximo_id;
-        Funcionario.proximo_id++;
-        this.atualizarNome(nome);
-        this.atualizarSalarioHora(salario_hora);
-        this.reiniciarMesTrabalho();
+    public Funcionario(String nome, double salarioHora){
+        this.ID_FUNC = Funcionario.proxID;
+        Funcionario.proxID++;
+        this.atualizaNome(nome);
+        this.atualizaSalarioHora(salarioHora);
+        this.reiniciaMesTrabalho();
     }
     
     ////////////////////////////////////////////////////////////////////
     // Nome
     ////////////////////////////////////////////////////////////////////
-    public void atualizarNome(String novo_nome){
+    public void atualizaNome(String novo_nome){
         // 'novo_nome' tem que ser diferente do nome atual para atualizar
         if (this.nome != novo_nome)
             this.nome = novo_nome;
@@ -50,44 +50,44 @@ public class Funcionario {
     ////////////////////////////////////////////////////////////////////
     // Salario Hora
     ////////////////////////////////////////////////////////////////////
-    public void atualizarSalarioHora(double novo_salario_hora){
+    public void atualizaSalarioHora(double novo_salario_hora){
         // 'novo_salario_hora' tem que ser maior que 12.50 e nao pode ser menor do que o atual pra atualizar
-        if ((novo_salario_hora > this.salario_hora) && (novo_salario_hora >= Funcionario.SALARIO_HORA_MINIMO))
-            this.salario_hora = novo_salario_hora;
+        if ((novo_salario_hora > this.salarioHora) && (novo_salario_hora >= Funcionario.SALARIO_HORA_MINIMO))
+            this.salarioHora = novo_salario_hora;
     }
     public double getSalarioHora(){
-        return this.salario_hora;
+        return this.salarioHora;
     }
     
     ////////////////////////////////////////////////////////////////////
     // ID
     ////////////////////////////////////////////////////////////////////
     public int getID(){
-        return this.id;
+        return this.ID_FUNC;
     }
     public static int getProximoID(){
-        return Funcionario.proximo_id;
+        return Funcionario.proxID;
     }
     
     ////////////////////////////////////////////////////////////////////
     // Trabalho
     ////////////////////////////////////////////////////////////////////
-    public void adicionarDiaDeTrabalho(double horas_trabalhadas_dia){
+    public void adicionaDiaDeTrabalho(double horas_trabalhadas_dia){
         // 'horas_trabalhadas_dia' tem que ser entre 4h e 24h para atualizar
         if ((horas_trabalhadas_dia >= Funcionario.HORA_MINIMA_TRABALHADA_DIA) && (horas_trabalhadas_dia <= Funcionario.HORA_MAXIMA_TRABALHADA_DIA))
-            this.horas_trabalhadas_mes += horas_trabalhadas_dia;
+            this.horasTrabalhadasMes += horas_trabalhadas_dia;
     }
-    public double calcularSalarioMes(){
-        return this.horas_trabalhadas_mes * this.salario_hora;
+    public double calculaSalarioMes(){
+        return this.horasTrabalhadasMes * this.salarioHora;
     }
-    public void reiniciarMesTrabalho(){
-        this.horas_trabalhadas_mes = 0.0;
+    public void reiniciaMesTrabalho(){
+        this.horasTrabalhadasMes = 0.0;
     }
     
     ////////////////////////////////////////////////////////////////////
     // Visualizador de informacoes
     ////////////////////////////////////////////////////////////////////
     public String info(){
-        return "ID: " + this.getID() + " | Nome: " + this.getNome() + " | Salario/hora: R$" + this.getSalarioHora() + " | Horas trabalhadas nesse mes: " + this.horas_trabalhadas_mes + "h | Salario nesse mes: R$ " + this.calcularSalarioMes();
+        return "ID: " + this.getID() + " | Nome: " + this.getNome() + " | Salario/hora: R$" + this.getSalarioHora() + " | Horas trabalhadas nesse mes: " + this.horasTrabalhadasMes + "h | Salario nesse mes: R$ " + this.calculaSalarioMes();
     }
 }
