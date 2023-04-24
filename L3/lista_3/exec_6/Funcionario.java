@@ -7,6 +7,8 @@
  * Lista 2
  */
 
+package lista_3.exec_6;
+
 public class Funcionario {
     private final int ID_FUNC;
     private String nome;
