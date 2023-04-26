@@ -16,13 +16,43 @@
 package lista_3.exec_6;
 
 public class FuncionarioTeste {
+    public static boolean testeGetProximoID(){
+        return (Funcionario.getProximoID()==0);
+    }
+    public static boolean testeGetID(){
+        int id = Funcionario.getProximoID();
+        Funcionario funcionario = new Funcionario("Funcionario_" + Funcionario.getProximoID());
+        return (funcionario.getID()==id);
+    }
+    public static boolean testeGetNome(){
+        String nome = "Funcionario_" + Funcionario.getProximoID();
+        Funcionario funcionario = new Funcionario(nome);
+        return (funcionario.getNome()==nome);
+    }
+    public static boolean testeGetSalarioHora(){
+        Funcionario funcionario = new Funcionario("Funcionario_" + Funcionario.getProximoID());
+        return (funcionario.getSalarioHora()==Funcionario.SALARIO_HORA_MINIMO);
+    }
+    public static boolean testeGetHorasTrabalhadasMes(){
+        double horas_trabalhadas = 10;
+        Funcionario funcionario = new Funcionario("Funcionario_" + Funcionario.getProximoID());
+        if (funcionario.getHorasTrabalhadasMes()!=0)
+            return false;
+        funcionario.adicionaDiaDeTrabalho(horas_trabalhadas);
+        if (funcionario.getHorasTrabalhadasMes()!=horas_trabalhadas)
+            return false;
+        return true;
+    }
+
+
+
+
     public static boolean testeConstrutorSimples(){
         int primeiro_id = Funcionario.getProximoID();
         int total_funcionarios = 10; 
-        int ultimo_id = primeiro_id + total_funcionarios; 
         Funcionario [] funcionarios = new Funcionario[total_funcionarios];
-        for (int i = primeiro_id; i < ultimo_id; i++){
-            funcionarios[i] = new Funcionario("Funcionario_" + primeiro_id+i);
+        for (int i = 0; i < total_funcionarios; i++){
+            funcionarios[i] = new Funcionario("Funcionario_" + (primeiro_id+i));
             if (primeiro_id+i+1 != Funcionario.getProximoID())
                 return false;
         }
@@ -132,9 +162,15 @@ public class FuncionarioTeste {
         return (funcionario.getHorasTrabalhadasMes()==0.0);
     }
 
+
     public static void main(String[] args) {
         System.out.println("\n[TESTES UNITARIOS]");
 
+        System.out.println(">> Teste de get ProximoID: " + (FuncionarioTeste.testeGetProximoID()?"Passou":"Nao Passou"));
+        System.out.println(">> Teste de get ID: " + (FuncionarioTeste.testeGetID()?"Passou":"Nao Passou"));
+        System.out.println(">> Teste de get Nome: " + (FuncionarioTeste.testeGetNome()?"Passou":"Nao Passou"));
+        System.out.println(">> Teste de get Salario/Hora: " + (FuncionarioTeste.testeGetSalarioHora()?"Passou":"Nao Passou"));
+        System.out.println(">> Teste de get Horas Trabalhadas/Mes: " + (FuncionarioTeste.testeGetHorasTrabalhadasMes()?"Passou":"Nao Passou"));
         System.out.println(">> Teste de Construtor Simples: " + (FuncionarioTeste.testeConstrutorSimples()?"Passou":"Nao Passou"));
         System.out.println(">> Teste de Construtor Completo: " + (FuncionarioTeste.testeConstrutorCompleto()?"Passou":"Nao Passou"));
         System.out.println(">> Teste de Atualizar Nome: " + (FuncionarioTeste.testeAtualizaNome()?"Passou":"Nao Passou"));

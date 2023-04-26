@@ -12,7 +12,7 @@ package lista_3.exec_6;
 public class Funcionario {
     private final int ID_FUNC;
     private String nome;
-    private double horasTrabalhadasMes;
+    private double horasTrabalhadasMes = 0.0;
     private double salarioHora = Funcionario.SALARIO_HORA_MINIMO;
     private static int proxID = 0;
     public static final double SALARIO_HORA_MINIMO = 12.50;
@@ -27,14 +27,12 @@ public class Funcionario {
         Funcionario.proxID++;
         this.atualizaNome(nome);
         this.atualizaSalarioHora(Funcionario.SALARIO_HORA_MINIMO);
-        this.reiniciaMesTrabalho();
     }
     public Funcionario(String nome, double salarioHora){
         this.ID_FUNC = Funcionario.proxID;
         Funcionario.proxID++;
         this.atualizaNome(nome);
         this.atualizaSalarioHora(salarioHora);
-        this.reiniciaMesTrabalho();
     }
     
     ////////////////////////////////////////////////////////////////////
