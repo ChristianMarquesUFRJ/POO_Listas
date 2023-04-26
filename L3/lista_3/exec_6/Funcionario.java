@@ -79,6 +79,9 @@ public class Funcionario {
         if ((horas_trabalhadas_dia >= Funcionario.HORA_MINIMA_TRABALHADA_DIA) && (horas_trabalhadas_dia <= Funcionario.HORA_MAXIMA_TRABALHADA_DIA))
             this.horasTrabalhadasMes += horas_trabalhadas_dia;
     }
+    public double getHorasTrabalhadasMes(){
+        return this.horasTrabalhadasMes;
+    }
     public double calculaSalarioMes(){
         return this.horasTrabalhadasMes * this.salarioHora;
     }
